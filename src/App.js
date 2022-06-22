@@ -2,7 +2,8 @@ import logo from "./logo.svg";
 import "./App.scss";
 import Nav from "./components/Nav";
 import Todo from "./components/Todo";
-import { useState } from "react";
+import Covid from "./components/Covid";
+import { useState, useEffect } from "react";
 
 const App = () => {
   let [name, setName] = useState("Tran");
@@ -13,6 +14,11 @@ const App = () => {
     { id: "todo3", title: "Playing game", type: "playing" },
     { id: "todo4", title: "Reading book", type: "working" },
   ]);
+
+  //same to componentDidMount, only run 1 as first render
+  useEffect(() => {
+    console.log("useEffect");
+  }, [address]);
 
   const handleEventClick = (event) => {
     if (!address) {
@@ -44,7 +50,8 @@ const App = () => {
         <Nav />
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Hello world with React and {name}</h1>
-        <Todo todos={todos} title="Todo List" deleteDataTodo={deleteDataTodo} />
+        <Covid />
+        {/* <Todo todos={todos} title="Todo List" deleteDataTodo={deleteDataTodo} />
         <Todo
           todos={todos.filter((item) => item.type === "working")}
           title="Working todo"
@@ -57,7 +64,7 @@ const App = () => {
         />
         <button type="Button" onClick={(event) => handleEventClick(event)}>
           Click me
-        </button>
+        </button> */}
       </header>
     </div>
   );
