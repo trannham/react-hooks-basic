@@ -8,9 +8,10 @@ const App = () => {
   let [name, setName] = useState("Tran");
   const [address, setAddress] = useState("");
   const [todos, setTodos] = useState([
-    { id: "todo1", title: "Watching Movie" },
-    { id: "todo2", title: "Coding" },
-    { id: "todo3", title: "Playing game" },
+    { id: "todo1", title: "Coding", type: "working" },
+    { id: "todo2", title: "Watching Movie", type: "playing" },
+    { id: "todo3", title: "Playing game", type: "playing" },
+    { id: "todo4", title: "Reading book", type: "working" },
   ]);
 
   const handleEventClick = (event) => {
@@ -27,11 +28,15 @@ const App = () => {
   };
   return (
     <div className="App">
-      <Nav />
       <header className="App-header">
+        <Nav />
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Hello world with React and {name}</h1>
-        <Todo myData={todos} />
+        <Todo myData={todos} title="Todo List" />
+        <Todo
+          myData={todos.filter((item) => item.type === "working")}
+          title="Working todo"
+        />
         <input
           type="text"
           value={address}
