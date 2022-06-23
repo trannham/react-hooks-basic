@@ -1,3 +1,5 @@
+# This repository was made to help a friend to learn basic React Hooks also give me a chance to practice it again
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
