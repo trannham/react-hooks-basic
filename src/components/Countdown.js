@@ -34,6 +34,10 @@ class CountDown extends React.Component {
 
 const HookCountdown = (props) => {
   const [count, setCount] = useState(10);
+  const [timer, setTimer] = useState(10);
+  const handleOnchange = (event) => {
+    setTimer(event.target.value);
+  };
   useEffect(() => {
     if (count === 0) {
       props.onTimesup();
@@ -47,7 +51,32 @@ const HookCountdown = (props) => {
       clearInterval(timer);
     };
   }, [count]);
-  return <div>{count}</div>;
+  return (
+    <div>
+      {count}
+      <br />
+      {count === 0 && (
+        <>
+          <div>
+            <input
+              type="number"
+              value={timer}
+              onChange={(event) => handleOnchange(event)}
+            />
+          </div>
+
+          <button
+            onClick={() => {
+              setCount(timer);
+              setTimer(10);
+            }}
+          >
+            Reset
+          </button>
+        </>
+      )}
+    </div>
+  );
 };
 
 export { CountDown, HookCountdown };

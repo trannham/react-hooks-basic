@@ -56,8 +56,8 @@ const App = () => {
             <Covid />
           </Route>
           <Route path="/timer">
-            <CountDown onTimesup={onTimesup} />
-            <span>-------------------</span>
+            {/* <CountDown onTimesup={onTimesup} />
+            <span>-------------------</span> */}
             <HookCountdown onTimesup={onTimesup} />
           </Route>
           <Route path="/todo">
