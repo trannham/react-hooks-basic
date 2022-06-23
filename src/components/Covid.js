@@ -1,19 +1,23 @@
 import useFetch from "../customize/fetch";
+import moment from "moment";
 
 const Covid = () => {
+  const today = new Date(new Date().setHours(3, 0, 0, 0));
+  const fromDate = moment()
+    .set({ hour: 3, minute: 0, second: 0, millisecond: 0 })
+    .subtract(30, "days");
   const {
     data: dataCovid,
     isLoading,
     isError,
   } = useFetch(
-    "https://api.covid19api.com/country/vietnam?from=2021-10-01T00:00:00Z&to=2021-10-20T00:00:00Z"
+    `https://api.covid19api.com/country/vietnam?from=${fromDate.toISOString()}}&to=${today.toISOString()}`
   );
 
   return (
     <>
       <h3>Vietnam Covid19 tracking</h3>
       <table>
-        {console.log(">>>Data covid", dataCovid)}
         <thead>
           <tr>
             <th>Date</th>
