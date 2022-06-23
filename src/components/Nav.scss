@@ -1,6 +1,7 @@
 .topnav {
     overflow        : hidden;
     background-color: #747474;
+
     a {
         float          : left;
         display        : block;
@@ -10,10 +11,12 @@
         text-decoration: none;
         font-size      : 17px;
     }
+
     a:hover {
         background-color: #ddd;
         color           : black;
     }
+
     a.active {
         background-color: #04AA6D;
         color           : white;
