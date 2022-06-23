@@ -4,12 +4,14 @@ import moment from "moment";
 
 const Covid = () => {
   const [dataCovid, setDataCovid] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsErr] = useState(false);
   //componentDidMount
-  useEffect(() => {
-    setTimeout(async () => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(async () => {
+    try {
       let res = await axios.get(
-        "https://api.covid19api.com/country/vietnam?from=2021-10-01T00:00:00Z&to=2021-10-20T00:00:00Z"
+        "https://1api.covid19api.com/country/vietnam?from=2021-10-01T00:00:00Z&to=2021-10-20T00:00:00Z"
       );
       let data = res && res.data ? res.data : [];
 
@@ -30,8 +32,12 @@ const Covid = () => {
         data = data.reverse();
       }
       setDataCovid(data);
-      setLoading(false);
-    }, 3000);
+      setIsLoading(false);
+      setIsErr(false);
+    } catch (e) {
+      setIsErr(true);
+      setIsLoading(false);
+    }
   }, []);
   return (
     <>
@@ -48,7 +54,8 @@ const Covid = () => {
           </tr>
         </thead>
         <tbody>
-          {loading === false &&
+          {isError === false &&
+            isLoading === false &&
             dataCovid &&
             dataCovid.length > 0 &&
             dataCovid.map((item) => {
@@ -62,10 +69,17 @@ const Covid = () => {
                 </tr>
               );
             })}
-          {loading === true && (
+          {isLoading === true && (
             <tr>
-              <td colspan="5" style={{ textAlign: "center" }}>
+              <td colSpan="5" style={{ textAlign: "center" }}>
                 Loading...
+              </td>
+            </tr>
+          )}
+          {isError === true && (
+            <tr>
+              <td colSpan="5" style={{ textAlign: "center" }}>
+                Something wrong...
               </td>
             </tr>
           )}

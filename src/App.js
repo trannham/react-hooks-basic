@@ -15,11 +15,6 @@ const App = () => {
     { id: "todo4", title: "Reading book", type: "working" },
   ]);
 
-  //same to componentDidMount, only run 1 as first render
-  useEffect(() => {
-    console.log("useEffect");
-  }, [address]);
-
   const handleEventClick = (event) => {
     if (!address) {
       alert("empty input");
