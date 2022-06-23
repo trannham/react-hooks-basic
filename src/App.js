@@ -5,7 +5,7 @@ import Todo from "./components/Todo";
 import Covid from "./components/Covid";
 import { useState, useEffect } from "react";
 import { CountDown, HookCountdown } from "./components/Countdown";
-
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const App = () => {
   let [name, setName] = useState("Tran");
   const [address, setAddress] = useState("");
@@ -45,31 +45,45 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <Nav />
-        <img src={logo} className="App-logo" alt="logo" />
-        <CountDown onTimesup={onTimesup} />
-        <span>-------------------</span>
-        <HookCountdown onTimesup={onTimesup} />
-        <h1>Hello world with React and {name}</h1>
-        <Covid />
-        {/* <Todo todos={todos} title="Todo List" deleteDataTodo={deleteDataTodo} />
-        <Todo
-          todos={todos.filter((item) => item.type === "working")}
-          title="Working todo"
-          deleteDataTodo={deleteDataTodo}
-        />
-        <input
-          type="text"
-          value={address}
-          onChange={(event) => handleOnchange(event)}
-        />
-        <button type="Button" onClick={(event) => handleEventClick(event)}>
-          Click me
-        </button> */}
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Nav />
+          <img src={logo} className="App-logo" alt="logo" />
+        </header>
+        <Switch>
+          <Route exact path="/">
+            <Covid />
+          </Route>
+          <Route path="/timer">
+            <CountDown onTimesup={onTimesup} />
+            <span>-------------------</span>
+            <HookCountdown onTimesup={onTimesup} />
+          </Route>
+          <Route path="/todo">
+            <Todo
+              todos={todos}
+              title="Todo List"
+              deleteDataTodo={deleteDataTodo}
+            />
+            <Todo
+              todos={todos.filter((item) => item.type === "working")}
+              title="Working todo"
+              deleteDataTodo={deleteDataTodo}
+            />
+            <input
+              type="text"
+              value={address}
+              onChange={(event) => handleOnchange(event)}
+            />
+            <button type="Button" onClick={(event) => handleEventClick(event)}>
+              Click me
+            </button>
+          </Route>
+          <Route path="/secret"></Route>
+        </Switch>
+      </div>
+    </Router>
   );
 };
 
