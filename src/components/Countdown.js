@@ -5,6 +5,12 @@ class CountDown extends React.Component {
     count: 10,
   };
 
+  componentWillUnmount() {
+    if (this.timer) {
+      clearInterval(this.timer);
+      // this.props.onTimesup();
+    }
+  }
   componentDidMount() {
     this.timer = setInterval(() => {
       this.setState({
