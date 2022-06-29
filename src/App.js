@@ -3,11 +3,12 @@ import "./App.scss";
 import Nav from "./components/Nav";
 import Todo from "./components/Todo";
 import Covid from "./components/Covid";
+import Blog from "./components/Blog";
+import DetailBlog from "./components/DetailBlog";
 import { useState, useEffect } from "react";
 import { CountDown, HookCountdown } from "./components/Countdown";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const App = () => {
-  let [name, setName] = useState("Tran");
   const [address, setAddress] = useState("");
   const [todos, setTodos] = useState([
     { id: "todo1", title: "Coding", type: "working" },
@@ -79,6 +80,12 @@ const App = () => {
             <button type="Button" onClick={(event) => handleEventClick(event)}>
               Click me
             </button>
+          </Route>
+          <Route exact path="/blog">
+            <Blog />
+          </Route>
+          <Route path="/blog/:id">
+            <DetailBlog />
           </Route>
           <Route path="/secret"></Route>
         </Switch>

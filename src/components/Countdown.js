@@ -8,7 +8,6 @@ class CountDown extends React.Component {
   componentWillUnmount() {
     if (this.timer) {
       clearInterval(this.timer);
-      // this.props.onTimesup();
     }
   }
   componentDidMount() {
@@ -23,7 +22,6 @@ class CountDown extends React.Component {
     if (prevState.count !== this.state.count && this.state.count === 0) {
       if (this.timer) {
         clearInterval(this.timer);
-        // this.props.onTimesup();
       }
     }
   }
@@ -40,7 +38,7 @@ const HookCountdown = (props) => {
   };
   useEffect(() => {
     if (count === 0) {
-      props.onTimesup();
+      // props.onTimesup();
       return;
     }
     let timer = setInterval(() => {
@@ -64,7 +62,6 @@ const HookCountdown = (props) => {
               onChange={(event) => handleOnchange(event)}
             />
           </div>
-
           <button
             onClick={() => {
               setCount(timer);
