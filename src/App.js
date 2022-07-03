@@ -80,7 +80,7 @@ const App = () => {
               onChange={(event) => handleOnchange(event)}
             />
             <button type="Button" onClick={(event) => handleEventClick(event)}>
-              Click me
+              Add Todo
             </button>
           </Route>
           <Route exact path="/blog">
