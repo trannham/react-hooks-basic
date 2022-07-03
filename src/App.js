@@ -6,6 +6,7 @@ import Covid from "./components/Covid";
 import Blog from "./components/Blog";
 import DetailBlog from "./components/DetailBlog";
 import AddNewBlog from "./components/AddNewBlog";
+import NotFound from "./components/NotFound";
 import { useState, useEffect } from "react";
 import { CountDown, HookCountdown } from "./components/Countdown";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -92,6 +93,9 @@ const App = () => {
             <AddNewBlog />
           </Route>
           <Route path="/secret"></Route>
+          <Route path="*">
+            <NotFound />
+          </Route>
         </Switch>
       </div>
     </Router>
