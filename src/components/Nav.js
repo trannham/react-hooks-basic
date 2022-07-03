@@ -13,7 +13,7 @@ const Nav = () => {
       <NavLink to="/todo" activeClassName="active">
         Todo
       </NavLink>
-      <NavLink to="/blog" activeClassName="active">
+      <NavLink exact to="/blog" activeClassName="active">
         Blog
       </NavLink>
       <NavLink to="/secret" activeClassName="active">
